@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -46,10 +47,10 @@
                                         <rect key="frame" x="0.0" y="1" width="343" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KT3-8J-njs" id="jg1-yA-iDN">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ixe-4p-wLa">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ixe-4p-wLa">
                                                     <rect key="frame" x="8" y="0.0" width="120" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="120" id="kFp-d6-Y34"/>
@@ -124,7 +125,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ine-hB-JFZ">
-                                <rect key="frame" x="16" y="359" width="343" height="250"/>
+                                <rect key="frame" x="16" y="300" width="343" height="250"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="IY6-dT-fA5"/>
@@ -133,22 +134,23 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3de-Xi-qiq">
+                                <rect key="frame" x="16" y="72" width="343" height="220"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ADL-xU-z3l">
-                                <rect key="frame" x="16" y="617" width="343" height="30"/>
+                                <rect key="frame" x="16" y="558" width="343" height="89"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="onClickFavorite:" destination="2Yi-vP-rbu" eventType="touchUpInside" id="TNk-FR-JHZ"/>
+                                    <action selector="onClickFavorite:" destination="2Yi-vP-rbu" eventType="touchUpInside" id="GHp-F4-bcC"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3de-Xi-qiq">
-                                <rect key="frame" x="16" y="72" width="343" height="279"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="ADL-xU-z3l" secondAttribute="bottom" constant="20" symbolic="YES" id="3Co-54-MXr"/>
                             <constraint firstItem="3de-Xi-qiq" firstAttribute="leading" secondItem="YAk-Fs-A3o" secondAttribute="leadingMargin" id="7BP-MR-03e"/>
                             <constraint firstItem="ine-hB-JFZ" firstAttribute="leading" secondItem="ADL-xU-z3l" secondAttribute="leading" id="Ft5-la-jLm"/>
+                            <constraint firstItem="3de-Xi-qiq" firstAttribute="height" secondItem="YAk-Fs-A3o" secondAttribute="height" multiplier="0.33" id="MRd-ru-bLk"/>
                             <constraint firstItem="3de-Xi-qiq" firstAttribute="leading" secondItem="ine-hB-JFZ" secondAttribute="leading" id="PAM-my-cq2"/>
                             <constraint firstItem="ADL-xU-z3l" firstAttribute="top" secondItem="ine-hB-JFZ" secondAttribute="bottom" constant="8" symbolic="YES" id="bM3-gX-0GS"/>
                             <constraint firstItem="3de-Xi-qiq" firstAttribute="trailing" secondItem="YAk-Fs-A3o" secondAttribute="trailingMargin" id="crr-cR-Dak"/>
@@ -159,7 +161,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="btnFavorite" destination="ADL-xU-z3l" id="XWT-cZ-FTg"/>
+                        <outlet property="btnFavorite" destination="ADL-xU-z3l" id="wZx-gb-t7s"/>
                         <outlet property="img" destination="3de-Xi-qiq" id="z5K-PV-Ydo"/>
                         <outlet property="snpss" destination="ine-hB-JFZ" id="ED0-kD-LSz"/>
                     </connections>

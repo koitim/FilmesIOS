@@ -30,6 +30,28 @@ class MovieService {
         task.resume()
     }
     
+    class func favorite(_ movie: Movie) {
+        let currentUser = Auth.auth().currentUser
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        ref
+            .child("favoritos")
+            .child(currentUser!.uid)
+            .child(String(movie.id))
+            .setValue(movie.cloneFirebase())
+    }
+    
+    class func unFavorite(_ movie: Movie) {
+        let currentUser = Auth.auth().currentUser
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        ref
+            .child("favoritos")
+            .child(currentUser!.uid)
+            .child(String(movie.id))
+            .removeValue()
+    }
+    
     class func getMoviesFavorites(_ callback: @escaping (_ movies: Array<Movie>?, _ error: Error?) -> Void) {
         let currentUser = Auth.auth().currentUser
         var ref: DatabaseReference!
@@ -53,18 +75,6 @@ class MovieService {
         }) {(error) in
             callback(nil, error)
         }
-    }
-    
-    class func isFavorite(_ movie: Movie) -> Bool {
-        let currentUser = Auth.auth().currentUser
-        var ref: DatabaseReference!
-        ref = Database.database().reference()
-        ref.child("favoritos").child(currentUser!.uid).child(String(movie.id)).observeSingleEvent(of: .value, with: {(snapshot) in
-           
-        }) {(error) in
-            return false
-        }
-        return true
     }
     
     class func parserJson(_ data: Data) -> Array<Movie> {

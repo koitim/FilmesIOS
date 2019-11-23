@@ -15,6 +15,7 @@ class MovieShowController: UIViewController {
     @IBOutlet var btnFavorite: UIButton!
     
     var movie: Movie?
+    var presenter: MoviePresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,15 @@ class MovieShowController: UIViewController {
     }
     
     @IBAction func onClickFavorite(_ sender: UIButton) {
-        
+        if movie!.favorite {
+            btnFavorite.setTitle("Desfavoritar", for: .normal)
+        } else {
+            btnFavorite.setTitle("Favoritar", for: .normal)
+        }
+        if movie!.favorite {
+            presenter!.unFavorite(movie!)
+        } else {
+            presenter!.favorite(movie!)
+        }
     }
 }

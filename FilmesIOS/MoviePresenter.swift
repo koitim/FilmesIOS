@@ -12,22 +12,49 @@ class MoviePresenter {
     var moviesPopular: Array<Movie> = []
     var moviesFavorites: Array<Movie> = []
     
-   /* func fetchMovies() {
-        let callback = {(_ movies: Array<Movie>?, _ error: Error?) -> Void in
+    let view: MovieView
+    
+    init(view: MovieView) {
+        self.view = view
+    }
+    
+    func getMoviesPopular() -> Array<Movie> {
+        return moviesPopular
+    }
+    
+    func getMoviesFavorite() -> Array<Movie> {
+        return moviesFavorites
+    }
+    
+    func fetchMovies() {
+        let cbFavorites = {(_ movies: Array<Movie>?, _ error: Error?) -> Void in
             if let movies = movies {
                 self.moviesFavorites = movies
-                self.tableView.reloadData()
-                let cbFavorite = {(_ favorite: Bool) -> in
-                    
-                }
-                for movie in self.movies {
-                    MovieService.isFavorite(movie)
-                }
-                //self.progress.stopAnimating()
-            } else if let error = error {
-                Util.alerta("Erro: " + error.localizedDescription, viewController: self)
+                self.view.updatedFavorites()
             }
         }
-        MovieService.getMoviesFavorites(callback)
-    }*/
+        MovieService.getMoviesFavorites(cbFavorites)
+        
+        let cbPopular = {(_ movies: Array<Movie>?, _ error: Error?) -> Void in
+            if let movies = movies {
+                self.moviesPopular = movies
+                self.view.updatedPopular()
+            }
+        }
+        MovieService.getMoviesPopular(cbPopular)
+    }
+    
+    func favorite(_ movie: Movie) {
+        MovieService.favorite(movie)
+        moviesFavorites.append(movie)
+        view.updatedFavorites()
+    }
+    
+    func unFavorite(_ movie: Movie) {
+        MovieService.unFavorite(movie)
+        moviesFavorites = moviesFavorites.filter { (m) -> Bool in
+            movie.id != m.id
+        }
+        view.updatedFavorites()
+    }
 }

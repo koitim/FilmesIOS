@@ -14,4 +14,13 @@ class Movie {
     var synopsis = " "
     var url_image = " "
     var favorite = false
+    
+    func cloneFirebase() -> MovieFirebase {
+        let mf = MovieFirebase()
+        mf.id = self.id
+        mf.title = self.title
+        mf.synopsis = self.synopsis
+        mf.url_image = self.url_image
+        return mf
+    }
 }
